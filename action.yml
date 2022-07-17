@@ -16,7 +16,7 @@ runs:
     - name: Run Goodcheck passing errors to Reviewdog
       if: github.event_name == 'pull_request'
       env:
-        REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        REVIEWDOG_GITHUB_API_TOKEN: ${{ github.token }}
       run: 'goodcheck check | reviewdog -efm="%f:%l:%c: %m" -diff="git diff FETCH_HEAD"'
       shell: bash
     - name: Run Goodcheck
