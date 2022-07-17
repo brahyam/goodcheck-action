@@ -15,7 +15,7 @@ runs:
       shell: bash
     - name: Run Goodcheck passing errors to Reviewdog
       if: github.event_name == 'pull_request'
-      run: 'goodcheck check | reviewdog -efm="%f:%l:%c: %m"'
+      run: 'goodcheck check | reviewdog -efm="%f:%l:%c: %m" -diff="git diff FETCH_HEAD"'
       shell: bash
     - name: Run Goodcheck
       if: github.event_name != 'pull_request'
